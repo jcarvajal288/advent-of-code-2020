@@ -17,7 +17,6 @@ class Day3Test extends AnyFlatSpec {
   }
 
   it should "solve the extended problem" in {
-    val slopeFile = Source.fromResource("Day3FullInput")
     val results = List[Double](
       day3.findNumberOfTreesOnSlope(Source.fromResource("Day3FullInput"), (1,1)),
       day3.findNumberOfTreesOnSlope(Source.fromResource("Day3FullInput"), (3,1)),
