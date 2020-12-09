@@ -12,8 +12,11 @@ class Day7Test extends AnyFlatSpec {
     assert(day7.findHowManyBagsContain("Day7FullInput", "shiny gold") == 169)
   }
 
+  it should "find the correct answer for the second example problem" in {
+    assert(day7.findHowManyBagsInside("Day7ExampleInput2", "shiny gold") == 126)
+  }
+
   it should "find the correct answer for the extended problem" in {
-    //val answerFile = Source.fromResource("Day7FullInput")
-    //assert(day7.findSumOfEveryoneAnswers(answerFile) == 3740)
+    assert(day7.findHowManyBagsInside("Day7FullInput", "shiny gold") == 82372)
   }
 }
