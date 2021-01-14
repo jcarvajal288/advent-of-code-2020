@@ -1,9 +1,8 @@
 import java.io.BufferedReader;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class Day9 {
+class Day9 {
 
     static long findWeakNumber(BufferedReader bufferedReader, int preambleLength) {
         List<Long> numbersList = bufferedReader
@@ -32,5 +31,36 @@ public class Day9 {
             }
         }
         return false;
+    }
+
+    static long solveExtendedProblem(BufferedReader bufferedReader, long targetNumber) {
+        List<Long> numbersList = bufferedReader
+                .lines()
+                .map(Long::parseLong)
+                .collect(Collectors.toList());
+        List<Long> continuousSet = findContinuousSetThatAddsToTarget(numbersList, targetNumber);
+        Long min = Collections.min(continuousSet);
+        Long max = Collections.max(continuousSet);
+        return min + max;
+    }
+
+    private static List<Long> findContinuousSetThatAddsToTarget(List<Long> numbersList, long targetNumber) {
+        ListIterator<Long> startOfSet = numbersList.listIterator(0);
+        for(; startOfSet.hasNext(); startOfSet.next()) {
+            long sum = numbersList.get(startOfSet.nextIndex());
+            List<Long> continuousSet = new ArrayList<>(Collections.singletonList(numbersList.get(startOfSet.nextIndex())));
+            ListIterator<Long> iter = numbersList.listIterator(startOfSet.nextIndex()+1);
+            for(; iter.hasNext(); iter.next()) {
+                long nextNumber = numbersList.get(iter.nextIndex());
+                continuousSet.add(nextNumber);
+                sum += nextNumber;
+                if (sum == targetNumber) {
+                    return continuousSet;
+                } else if (sum > targetNumber) {
+                    break;
+                }
+            }
+        }
+        return new ArrayList<>();
     }
 }
