@@ -13,10 +13,9 @@ class Day8 {
         previousInstructions += instPtr
         val (opcode, argument) = instructionList(instPtr)
         opcode match {
-          case "acc" => {
+          case "acc" =>
             accumulator += argument
             instPtr += 1
-          }
           case "jmp" => instPtr += argument
           case "nop" => instPtr += 1
           case _ => throw new RuntimeException(s"Unknown opcode $opcode")
