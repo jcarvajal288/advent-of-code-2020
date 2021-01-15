@@ -8,23 +8,15 @@ class Day11 {
     static int findFinalOccupiedSeats(BufferedReader br) {
         List<List<Character>> seatMap = constructSeatMap(br);
         seatMap = fillAllSeats(seatMap);
-        printSeatMap(seatMap);
         List<List<Character>> newSeatMap;
-        do {
+        while (true) {
             newSeatMap = iterateSeatMap(seatMap);
-            printSeatMap(newSeatMap);
-        } while (!seatMap.equals(newSeatMap));
-        return countOccupiedSeats(seatMap);
-    }
-
-    private static void printSeatMap(List<List<Character>> seatMap) {
-        seatMap.stream().forEachOrdered(row -> {
-            for(char ch : row) {
-                System.out.print(ch);
+            if (newSeatMap.equals(seatMap)) {
+                break;
             }
-            System.out.println();
-        });
-        System.out.println();
+            seatMap = newSeatMap;
+        }
+        return countOccupiedSeats(seatMap);
     }
 
     private static List<List<Character>> constructSeatMap(BufferedReader bufferedReader) {

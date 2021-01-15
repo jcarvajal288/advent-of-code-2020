@@ -17,4 +17,13 @@ class Day11Test {
         assertEquals(37, Day11.findFinalOccupiedSeats(br));
     }
 
+    @Test
+    void fullProblemTest() {
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(
+                        this.getClass().getResourceAsStream("/Day11FullInput")
+                )
+        );
+        assertEquals(2321, Day11.findFinalOccupiedSeats(br));
+    }
 }
